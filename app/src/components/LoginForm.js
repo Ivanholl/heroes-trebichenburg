@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Jumbotron, Form, Button} from 'react-bootstrap';
+import {setUser} from '../redux/actions';
+import { useDispatch } from 'react-redux'
 
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
+    const dispatch = useDispatch();
 
     function login() {
         let sendParams = {
@@ -29,6 +32,9 @@ function LoginForm() {
             .then((response) => response.json())
             .then((res) => {
                 console.log('Success:', res);
+
+                dispatch(setUser(res))
+
             })
         })
         .catch((error) => {
