@@ -1,9 +1,8 @@
-// import React from 'react';
-// import logo from './logo.svg';
-import './css/main.css';
-
 import React, {Suspense, lazy} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+import './css/index.css';
+import Header from './components/Header';;
 
 const Home = lazy(() => import ('./routes/Home'));
 const About = lazy(() => import ('./routes/About'));
@@ -11,8 +10,10 @@ const About = lazy(() => import ('./routes/About'));
 function App() {
 
     return (
-        <Router>
+        <>
+        <Header />
 
+        <Router>
             <Suspense fallback={<div> Loading ...</div>}>
                 <Switch>
                     <Route exact={true} path="/" component={Home}/>
@@ -20,6 +21,7 @@ function App() {
                 </Switch>
             </Suspense>
         </Router>
+        </>
     );
 }
 
