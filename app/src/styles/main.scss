@@ -2,8 +2,19 @@
     margin: 0;
     padding: 0;
 }
-body {
+html, body, #root {
     width: 100%;
     height: 100%;
-    background: darkblue url('../images/background.png') repeat;
+}
+body {
+    background: $dark-blue url('../images/background.png') repeat;
+}
+#root {
+    background: linear-gradient(to bottom, transparent 33%, rgba(0, 0, 0, 0.4) 100%);
+    padding-top: 3.5rem;
+}
+.navbar {
+    position: fixed;
+    width: 100vw;
+    top: 0;
 }

@@ -15,7 +15,7 @@ function Header() {
         <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
                 Signed in as:
-                <a href="#login"> {user.username} </a>
+                <a> {user.username} </a>
             </Navbar.Text>
         </Navbar.Collapse>
     </Navbar>)
