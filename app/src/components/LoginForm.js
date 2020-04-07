@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {Jumbotron, Form, Button} from 'react-bootstrap';
-import {setUser} from '../redux/actions';
-import {useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux';
 
+import * as UserActions from '../redux/actions';
 import {useHistory} from 'react-router-dom';
+
 
 function LoginForm() {
     const [email, setEmail] = useState('');
@@ -13,33 +14,37 @@ function LoginForm() {
 
 
     function login() {
-        let sendParams = {
-            email,
-            password
-        }
-        fetch('http://localhost:8001/users/login', {
-            method: 'POST', // or 'PUT'
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(sendParams)
-        }).then((response) => response.json()).then((res) => {
-            console.log('Success:', res);
-
-            fetch(`http://localhost:8001/users/me`, {
-                headers: {
-                    'token': res.token
-                }
-            }).then((response) => response.json()).then((res) => {
-                console.log('Success:', res);
+        // let sendParams = {
+        //     email,
+        //     password
+        // }
+        dispatch(UserActions.login(email, password))
+            .then(res => {
                 history.push("/charactercreation");
-
-                dispatch(setUser(res))
-
             })
-        }).catch((error) => {
-            console.error('Error:', error);
-        });
+        // fetch('http://localhost:8001/users/login', {
+        //     method: 'POST', // or 'PUT'
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(sendParams)
+        // }).then((response) => response.json()).then((res) => {
+        //     console.log('Success:', res);
+        //
+        //     fetch(`http://localhost:8001/users/me`, {
+        //         headers: {
+        //             'token': res.token
+        //         }
+        //     }).then((response) => response.json()).then((res) => {
+        //         console.log('Success:', res);
+        //         history.push("/charactercreation");
+        //
+        //         dispatch(setUser(res))
+        //
+        //     })
+        // }).catch((error) => {
+        //     console.error('Error:', error);
+        // });
     }
 
     // <Jumbotron>

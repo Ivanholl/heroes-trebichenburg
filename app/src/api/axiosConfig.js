@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const axiosInstance  axios({
+export const axiosInstance = axios.create({
      baseURL: 'http://localhost:8001'
 })
 
@@ -17,11 +17,11 @@ export function authenticate(email, password) {
 
 export function setTokenInterseptor(token) {
     const interceptor = axiosInstance.interceptors.request.use(config => {
-        config.headers.token = 'token';
+        config.headers.token = token;
         return config
     })
-}
-
+};
+/*
 fetch('http://localhost:8001/users/login', {
     method: 'POST', // or 'PUT'
     headers: {
@@ -45,4 +45,4 @@ fetch('http://localhost:8001/users/login', {
 }).catch((error) => {
     console.error('Error:', error);
 });
-}
+*/

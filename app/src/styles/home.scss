@@ -3,7 +3,7 @@
     flex-direction: column;
     height: 100%;
     text-align: center;
-    background: $dark-blue url('../images/home.png') repeat;
+    background: $dark-blue url('../images/home.png');
 
     h1 {
         font-size: 4.5rem;
@@ -48,7 +48,8 @@
             .form-control {
                 display: inline-block;
                 height: 100%;
-                padding-left: 1.5rem;
+                // padding-left: 2.5rem;
+                text-align: center;
                 font-size: 1rem;
                 background: transparent;
                 color: #FDFCFD;

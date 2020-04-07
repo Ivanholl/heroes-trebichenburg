@@ -4,7 +4,8 @@ import {
     // TOGGLE_TODO,
     // SET_VISIBILITY_FILTER,
     // VisibilityFilters
-    SET_USER
+    SET_USER,
+    SET_IS_AUTHENTICATED
 } from './actions'
 // const {
 //     SHOW_ALL
@@ -45,14 +46,17 @@ import {
 const initialState = {
     user: {
         username: '',
-    }
+    },
+    isAuthenticated: false,
 }
 
 function userReducer(state = initialState, action) {
     switch (action.type) {
         case SET_USER:
-            debugger
+            // debugger
             return { ...state,  user: action.user }
+        case SET_IS_AUTHENTICATED:
+            return { ...state,  isAuthenticated: action.isAuthenticated }
         default:
             return state
     }
