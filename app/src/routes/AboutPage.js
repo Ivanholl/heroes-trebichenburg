@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function About() {
+export default function AboutPage() {
      const [count, setCount] = useState(0);
 
      useEffect(() => {
@@ -17,5 +17,3 @@ function About() {
     </>
     );
 }
-
-export default About;

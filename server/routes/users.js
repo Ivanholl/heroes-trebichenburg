@@ -80,9 +80,9 @@ router.post("/login",
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({
-        errors: errors.array()
-      });
+        return res.status(400).json({
+            errors: errors.array()
+        });
     }
 
     const { email, password } = req.body;
@@ -105,14 +105,14 @@ router.post("/login",
             }
         };
 
-      jwt.sign(payload, "secret",{ expiresIn: 3600 }, (err, token) => {
-          if (err) throw err;
-                res.status(200).json({
-                    token
-                });
-            }
-        );
-        } catch (e) {
+        jwt.sign(payload, "secret",{ expiresIn: 3600 }, (err, token) => {
+            if (err) throw err;
+            
+            res.status(200).json({
+                token
+            });
+        });
+    } catch (e) {
             console.error(e);
             res.status(500).json({
                 message: "Server Error"

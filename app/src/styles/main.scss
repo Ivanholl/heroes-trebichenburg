@@ -9,12 +9,27 @@ html, body, #root {
 body {
     background: $dark-blue url('../images/background.png') repeat;
 }
+
 #root {
     background: linear-gradient(to bottom, transparent 33%, rgba(0, 0, 0, 0.4) 100%);
-    padding-top: 3.5rem;
+    // padding-top: 3.5rem;
 }
 .navbar {
     position: fixed;
     width: 100vw;
     top: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
 }

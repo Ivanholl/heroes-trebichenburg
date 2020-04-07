@@ -3,10 +3,14 @@ import {Jumbotron, Form, Button} from 'react-bootstrap';
 import {setUser} from '../redux/actions';
 import {useDispatch} from 'react-redux'
 
+import {useHistory} from 'react-router-dom';
+
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
     const dispatch = useDispatch();
+    const history = useHistory();
+
 
     function login() {
         let sendParams = {
@@ -28,6 +32,7 @@ function LoginForm() {
                 }
             }).then((response) => response.json()).then((res) => {
                 console.log('Success:', res);
+                history.push("/charactercreation");
 
                 dispatch(setUser(res))
 
@@ -39,6 +44,7 @@ function LoginForm() {
 
     // <Jumbotron>
     return (<Form>
+        <h3>Login</h3>
         <Form.Group controlId="formBasicEmail">
             <Form.Label>
                 <svg viewBox="0 0 20 20">
