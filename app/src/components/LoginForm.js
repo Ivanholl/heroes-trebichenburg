@@ -1,53 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Jumbotron, Form, Button} from 'react-bootstrap';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import * as UserActions from '../redux/actions';
 import {useHistory} from 'react-router-dom';
 
 
-function LoginForm() {
+export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const isAuthenticated = useSelector(state => state.userReducer.isAuthenticated);
 
     function login() {
-        // let sendParams = {
-        //     email,
-        //     password
-        // }
         dispatch(UserActions.login(email, password))
             .then(res => {
                 history.push("/charactercreation");
             })
-        // fetch('http://localhost:8001/users/login', {
-        //     method: 'POST', // or 'PUT'
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(sendParams)
-        // }).then((response) => response.json()).then((res) => {
-        //     console.log('Success:', res);
-        //
-        //     fetch(`http://localhost:8001/users/me`, {
-        //         headers: {
-        //             'token': res.token
-        //         }
-        //     }).then((response) => response.json()).then((res) => {
-        //         console.log('Success:', res);
-        //         history.push("/charactercreation");
-        //
-        //         dispatch(setUser(res))
-        //
-        //     })
-        // }).catch((error) => {
-        //     console.error('Error:', error);
-        // });
     }
+    useEffect(() => {
+        if (!isAuthenticated) {
+            dispatch(UserActions.checkIfAuth())
+            .then(() => history.push("/charactercreation"))
+        }
+    })
 
-    // <Jumbotron>
     return (<Form>
         <h3>Login</h3>
         <Form.Group controlId="formBasicEmail">
@@ -67,14 +45,6 @@ function LoginForm() {
             </Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={e => setPass(e.target.value)}/>
         </Form.Group>
-        {/**}<Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out"/>
-        </Form.Group>*/}
-        <Button variant="primary" onClick={() => login()}>
-            Submit
-        </Button>
+        <Button variant="primary" onClick={() => login()}>Submit</Button>
     </Form>);
-    // </Jumbotron>
-}
-
-export default LoginForm;
+};

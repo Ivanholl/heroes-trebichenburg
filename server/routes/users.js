@@ -107,7 +107,7 @@ router.post("/login",
 
         jwt.sign(payload, "secret",{ expiresIn: 3600 }, (err, token) => {
             if (err) throw err;
-            
+
             res.status(200).json({
                 token
             });
@@ -125,7 +125,11 @@ router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
     const user = await User.findById(req.user.id);
-    res.json(user);
+    res.json({
+        _id: user._id,
+        username: user.username,
+        email: user.email
+    });
   } catch (e) {
     res.send({ message: "Error in Fetching user" });
   }

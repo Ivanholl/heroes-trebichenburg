@@ -40,7 +40,7 @@ export function login(email, pass) {
                     var token = res.data.token;
                     setTokenInterseptor(token);
                     dispatch(getUserInfo())
-                    .then(() => resolve())                  
+                    .then(() => resolve())
                 } else {
                     reject()
                 }
@@ -62,6 +62,18 @@ export function getUserInfo() {
             }
         })
         .catch(err => console.error(err))
+    })
+}
+
+export function checkIfAuth() {
+    return dispatch => new Promise((resolve, reject) => {
+        if (localStorage && localStorage.token) {
+            setTokenInterseptor(localStorage.token);
+            dispatch(getUserInfo())
+            .then(() => resolve())
+        } else {
+            reject()
+        }
     })
 }
 

@@ -16,11 +16,17 @@ export function authenticate(email, password) {
 };
 
 export function setTokenInterseptor(token) {
+    saveToLocalStorage('token', token);
+
     const interceptor = axiosInstance.interceptors.request.use(config => {
         config.headers.token = token;
         return config
     })
 };
+function saveToLocalStorage(fileName, data) {
+    if(localStorage) localStorage[fileName] = data;
+}
+
 /*
 fetch('http://localhost:8001/users/login', {
     method: 'POST', // or 'PUT'
