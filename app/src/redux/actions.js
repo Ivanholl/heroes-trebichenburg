@@ -64,13 +64,23 @@ export function getUserInfo() {
         .catch(err => console.error(err))
     })
 }
-
 export function checkIfAuth() {
     return dispatch => new Promise((resolve, reject) => {
         if (localStorage && localStorage.token) {
             setTokenInterseptor(localStorage.token);
             dispatch(getUserInfo())
             .then(() => resolve())
+        }
+        // else {
+        //     reject()
+        // }
+    })
+}
+export function logout () {
+    return dispatch => new Promise((resolve, reject) => {
+        if (localStorage && localStorage.token) {
+            setTokenInterseptor('')
+            resolve()
         } else {
             reject()
         }

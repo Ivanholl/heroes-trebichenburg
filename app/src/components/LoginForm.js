@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Jumbotron, Form, Button} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 
 import * as UserActions from '../redux/actions';

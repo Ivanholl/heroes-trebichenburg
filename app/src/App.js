@@ -3,8 +3,8 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 import { useSelector } from 'react-redux';
 
 import './css/index.css';
-import Header from './components/Header';
-import {axiosInstance, authenticate} from './api/axiosConfig.js';
+import AccountWidget from './components/AccountWidget.js';
+// import {axiosInstance, authenticate} from './api/axiosConfig.js';
 
 const Home = lazy(() => import ('./routes/HomePage'));
 const About = lazy(() => import ('./routes/HomePage'));
@@ -14,6 +14,7 @@ export default function App() {
 
     return (
         <>
+        <AccountWidget />
         <Router>
             <Suspense fallback={<div> Loading ...</div>}>
                 <Switch>
