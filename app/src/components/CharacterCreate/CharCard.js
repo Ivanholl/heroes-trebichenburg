@@ -1,6 +1,7 @@
 import React from 'react';
 // import {Navbar, Nav} from 'react-bootstrap';
 // import { useSelector } from 'react-redux';
+import {HP,MP,DMG,DF} from '../icons.js';
 
 export default function CharCard(args) {
     const race = args.race;
@@ -13,20 +14,20 @@ export default function CharCard(args) {
                     <span>Stats</span>
                 </div>
                 <ul className="menu-content">
-                    <li className="fa fa-bookmark-o">
-                        hp
+                    <li>
+                        <HP />
                         <span>{race.hp}</span>
                     </li>
-                    <li className="fa fa-heart-o">
-                        mp
+                    <li>
+                        <MP />
                         <span>{race.mp}</span>
                     </li>
-                    <li className="fa fa-comment-o">
-                        dmg
-                        <span>{race.minDm}-{race.maxDm}</span>
+                    <li>
+                        <DMG />
+                        <span>{`${race.minDm} - ${race.maxDm}`}</span>
                     </li>
-                    <li className="fa fa-comment-o">
-                        df
+                    <li>
+                        <DF />
                         <span>{race.df}</span>
                     </li>
                 </ul>

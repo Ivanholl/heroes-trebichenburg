@@ -30,24 +30,33 @@
                 padding: 0;
                 list-style-type: none;
                 float: right;
+                display: flex;
+                flex-direction: column;
+                transition: all 0.3s;
 
                 li {
                     display: inline-block;
                     margin: 0 5px;
                     position: relative;
+
+                    i {
+                        font-size: 1.6rem;
+                    }
+                    span {
+                        position: absolute;
+                        width: 100%;
+                        left: 50%;
+                        top: 0;
+                        font-size: 0.8rem;
+                        font-weight: 700;
+                        font-family: 'Open Sans';
+                        text-align: left;
+                        transform: translate(-50%, 0);
+                        transition: all 0.3s;
+                        opacity: 0;
+                    }
                 }
 
-                span {
-                    position: absolute;
-                    left: 50%;
-                    top: 0;
-                    font-size: 10px;
-                    font-weight: 700;
-                    font-family: 'Open Sans';
-                    transform: translate(-50%, 0);
-                    transition: all 0.3s;
-                    opacity: 0;
-                }
             }
 
             .wrapper.dwarf {background: url("../images/charCreate/dwarf.jpg") center / cover no-repeat;}
@@ -66,7 +75,6 @@
                     @include cf;
                     color: #ffffff;
                     padding: 1rem;
-                    transition: background 4s ease-out;
 
                     .date {
                         float: left;
@@ -74,14 +82,18 @@
                     }
                 }
                 &:hover {
+                    box-shadow: inset 0px 0px 5px 10px rgba(0,0,0,0.75);
+
                     .header {
                         background: linear-gradient(to bottom, #00000099 19%, transparent 90%);
                         background-position:100px;
 
                         .menu-content {
+                            transform: translate(-2rem);
                             span {
-                                transform: translate(-50%, -10px);
+                                transform: translate(1rem);
                                 opacity: 1;
+                                min-width: 2rem;
                             }
                         }
                     }

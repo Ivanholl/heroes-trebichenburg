@@ -58,34 +58,35 @@ export function getUserInfo() {
                 dispatch(setIsAuthenticated(true));
                 resolve(res);
             } else {
-                reject()
+                reject();
             }
         })
-        .catch(err => console.error(err))
-    })
-}
+        .catch(err => console.error(err));
+    });
+};
 export function checkIfAuth() {
     return dispatch => new Promise((resolve, reject) => {
         if (localStorage && localStorage.token) {
             setTokenInterseptor(localStorage.token);
             dispatch(getUserInfo())
-            .then(() => resolve())
+            .then(() => resolve());
         }
         // else {
         //     reject()
         // }
-    })
-}
+    });
+};
 export function logout () {
     return dispatch => new Promise((resolve, reject) => {
         if (localStorage && localStorage.token) {
-            setTokenInterseptor('')
-            resolve()
+            setTokenInterseptor('');
+            dispatch(setUser({}));
+            resolve();
         } else {
-            reject()
+            reject();
         }
-    })
-}
+    });
+};
 
 // export function addTodo(text) {
 //   return { type: ADD_TODO, text }

@@ -14,9 +14,9 @@ export default function App() {
 
     return (
         <>
-        <AccountWidget />
         <Router>
             <Suspense fallback={<div> Loading ...</div>}>
+                <AccountWidget />
                 <Switch>
                     <Route exact={true} path="/" component={Home}/>
                     <Route path="/about" component={About}/>
