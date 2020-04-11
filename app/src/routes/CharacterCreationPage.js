@@ -1,26 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+// import {Button} from 'react-bootstrap';
 // import {useHistory} from 'react-router-dom';
 import CharCard from '../components/CharacterCreate/CharCard';
 import * as UserActions from '../redux/actions';
 
 export default function CharacterCreationPage() {
-    // const [count, setCount] = useState(0);
-    // const dispatch = useDispatch();
-    // const history = useHistory();
-
-    // useEffect(() => {
-    //     document.title = `You clicked ${count} times`;
-    // });
 
     return (
     <div id="CharacterCreation">
         <h2>Create New Character</h2>
 
         <div className="row">
-            {Allraces.map((race, index) => <CharCard key={index} race={race}/>)
-
-            }
+            {Allraces.map((race, index) =>
+                <CharCard key={index} race={race}/>
+            )}
         </div>
     </div>
     );

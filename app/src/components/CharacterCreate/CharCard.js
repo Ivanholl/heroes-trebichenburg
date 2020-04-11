@@ -1,5 +1,5 @@
 import React from 'react';
-// import {Navbar, Nav} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 // import { useSelector } from 'react-redux';
 import {HP,MP,DMG,DF} from '../icons.js';
 
@@ -11,7 +11,7 @@ export default function CharCard(args) {
         <div className={`wrapper ${race.name}`}>
             <div className="header">
                 <div className="date">
-                    <span>Stats</span>
+                    <span>stats</span>
                 </div>
                 <ul className="menu-content">
                     <li>
@@ -34,10 +34,8 @@ export default function CharCard(args) {
             </div>
             <div className="data">
                 <div className="content">
-                    <span className="author">Jane Doe</span>
-                    <h1 className="title">
-                        {race.name}
-                    </h1>
+                    <span className="author">John Doe</span>
+                    <h1 className="title">{race.name}</h1>
                     <p className="text">{race.info}</p>
                 </div>
             </div>
