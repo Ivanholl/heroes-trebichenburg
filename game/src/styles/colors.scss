@@ -1,0 +1,15 @@
+$light-blue: #4d5d6c;
+$dark-blue: #2b3d51;
+$shadow: 0 0 15px 1px rgba(0, 0, 0, 0.85);
+
+@mixin cf {
+    &::after,
+    &::before {
+        content: '';
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}

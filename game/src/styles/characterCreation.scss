@@ -1,0 +1,144 @@
+#CharacterCreation {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    background: $dark-blue url('../images/characterCreation.png');
+
+    h2 {
+        font-size: 3rem;
+        color: #dedede;
+        margin: 7rem 0;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.85);
+    }
+    button {
+        border: none;
+        background: transparent;
+    }
+    button.chosen {
+        position: absolute;
+    }
+    .row {
+        flex-direction: row;
+        justify-content: center;
+        margin: 0;
+
+        .card {
+            float: left;
+            width: 20rem;
+            border: none;
+            margin: 0 0.5rem;
+            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.6), 0 15px 12px rgba(0, 0, 0, 0.4);
+
+            .menu-content {
+                @include cf;
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+                float: right;
+                display: flex;
+                flex-direction: column;
+                transition: all 0.3s;
+
+                li {
+                    display: inline-block;
+                    margin: 0 5px;
+                    position: relative;
+
+                    i {
+                        font-size: 1.6rem;
+                    }
+                    span {
+                        position: absolute;
+                        width: 100%;
+                        left: 50%;
+                        top: 0;
+                        font-size: 0.8rem;
+                        font-weight: 700;
+                        font-family: 'Open Sans';
+                        text-align: left;
+                        transform: translate(-50%, 0);
+                        transition: all 0.3s;
+                        opacity: 0;
+                    }
+                }
+
+            }
+
+            .wrapper.dwarf {background: url("../images/charCreate/dwarf.jpg") center / cover no-repeat;}
+            .wrapper.elf {background: url("../images/charCreate/elf.jpg") center / cover no-repeat;}
+            .wrapper.human {background: url("../images/charCreate/human.jpg") center / cover no-repeat;}
+            .wrapper.orc {background: url("../images/charCreate/orc.jpg") center / cover no-repeat;}
+            .wrapper.undead {background: url("../images/charCreate/undead.jpg") center / cover no-repeat;}
+            .wrapper {
+                background-color: $dark-blue;
+                min-height: 35rem;
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+
+                .header {
+                    @include cf;
+                    color: #ffffff;
+                    padding: 1rem;
+
+                    .date {
+                        float: left;
+                        font-size: 0.75rem;
+                    }
+                }
+                &:hover {
+                    box-shadow: inset 0px 0px 5px 10px rgba(0,0,0,0.75);
+
+                    .header {
+                        background: linear-gradient(to bottom, #00000099 19%, transparent 90%);
+                        background-position:100px;
+
+                        .menu-content {
+                            transform: translate(-2rem);
+                            span {
+                                transform: translate(1rem);
+                                opacity: 1;
+                                min-width: 2rem;
+                            }
+                        }
+                    }
+                    .data {
+                        transform: translateY(0);
+                    }
+                }
+            }
+
+
+            .data {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                transition: transform 0.3s;
+                color: #ffffff;
+                transform: translateY(calc(7.5rem));
+
+                .content {
+                    padding: 1em;
+                    position: relative;
+                    z-index: 1;
+                    background: linear-gradient(to bottom, transparent 0%, #000000 60%);
+
+                    .author {
+                        font-size: 12px;
+                    }
+
+                    .title {
+                        margin-top: 10px;
+                        text-transform: uppercase;
+                    }
+
+                    .text {
+                        height: 6.5rem;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}
