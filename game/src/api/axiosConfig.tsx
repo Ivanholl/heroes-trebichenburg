@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { LoginInfo } from '../types'
 
 export const axiosInstance = axios.create({
      baseURL: 'http://localhost:8001'
 })
 
-export async function authenticate(email: any, password: any) {
+export async function authenticate({email, password}: LoginInfo) {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -15,7 +16,7 @@ export async function authenticate(email: any, password: any) {
     return await axiosInstance.post('/users/login', credentials, config);
 };
 
-export function setTokenInterseptor(token: any) {
+export function setTokenInterseptor(token: string) {
     saveToLocalStorage('token', token);
 
     // const interceptor = axiosInstance.interceptors.request.use(config => {

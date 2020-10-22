@@ -3,8 +3,8 @@ export type Race = {
     name: RaceName,
     hp: Number,
     mp: Number,
-    minDm: Number,
-    maxDm: Number,
+    dmMin: Number,
+    dmMax: Number,
     df: Number,
     info: String,
 }
@@ -16,3 +16,4 @@ export enum RaceName {
     orc = 'orc',
     undead = 'undead',
 }
+

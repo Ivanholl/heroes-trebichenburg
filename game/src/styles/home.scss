@@ -4,12 +4,17 @@
     height: 100%;
     text-align: center;
     background: $dark-blue url('../images/home.png');
+   
+    transform: scale(0.9);
+    opacity: 0.8;
 
     h1 {
         font-size: 4.5rem;
         color: #dedede;
         margin: 7rem 0;
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.85);
+
+        transform: scale(0);
     }
     .form {max-width: 30vw;
         margin: 0 auto;
@@ -22,6 +27,10 @@
         flex-direction: column;
         justify-content: center;
         color: #ffffff;
+        
+        transform: scale(0);
+        opacity: 0.8;
+        
 
         .form-group {
             border-bottom: 1px solid #ccc;
@@ -69,4 +78,29 @@
             color: #dedede;
         }
     }
+
+    
 }
+.loaded, .loaded h1{
+    animation: from-shrink-circle .6s .3s both;
+}
+
+.loaded .form {
+    animation: from-shrink .6s .5s both;
+}
+
+@keyframes from-shrink {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes from-shrink-circle {
+    to {
+        transform: scale(1);
+        opacity: 1;
+
+    }
+}
+

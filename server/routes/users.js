@@ -135,6 +135,30 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
+router.put("/edit", auth, async (req, res) => {
+    // console.log(req.body)
+    
+    try {
+        // let user = await User.findOne({ _id: req.body._id });
+        
+        // let update = { user, ...req.body };
+        // console.log(update);
+        // await user.save();
+        // await User.findByIdAndUpdate(user._id, user, (err, result) => {
+            console.log({...req.body});
+        await User.findOneAndUpdate({ _id: req.body._id }, {...req.body}, {new: true}, (err, result) => {
+            if(err) res.send({ message: err })  
+            // console.log(result)
+
+            res.json(result);
+        } )
+
+    } catch(e) {
+        res.send({ message: "Error in Fetching user" });
+    }
+    // User.updateOne({ _id: doc._id }, { $set: { name: 'foo' } })
+})
+
 
 
 module.exports = router;

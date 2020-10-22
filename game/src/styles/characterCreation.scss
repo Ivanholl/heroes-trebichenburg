@@ -11,10 +11,10 @@
         margin: 7rem 0;
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.85);
     }
-    button {
-        border: none;
-        background: transparent;
-    }
+    // button {
+    //     border: none;
+    //     background: transparent;
+    // }
     button.chosen {
         position: absolute;
     }
@@ -29,6 +29,17 @@
             border: none;
             margin: 0 0.5rem;
             box-shadow: 0 19px 38px rgba(0, 0, 0, 0.6), 0 15px 12px rgba(0, 0, 0, 0.4);
+            border-bottom: none;
+            background-color: transparent;
+
+            h2 {
+                display: none;
+
+                &:before, 
+                &:after {
+                    opacity: 0;
+                }
+            }
 
             .menu-content {
                 @include cf;
@@ -83,13 +94,30 @@
                     padding: 1rem;
 
                     .date {
-                        float: left;
+                        text-align: right;
+                        padding-right: 0.3vw;
                         font-size: 0.75rem;
+                        margin-bottom: 0.3vw;
+                        width: 100%;
                     }
                 }
+                .create-form {
+                    display: none;
+                    top: 60%;
+                    position: absolute;
+                    width: 70%;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+
+                    .input-group {
+                        margin-bottom: 0;
+                    }
+                }
+
                 &:hover {
                     box-shadow: inset 0px 0px 5px 10px rgba(0,0,0,0.75);
-
+                    
                     .header {
                         background: linear-gradient(to bottom, #00000099 19%, transparent 90%);
                         background-position:100px;
@@ -101,6 +129,13 @@
                                 opacity: 1;
                                 min-width: 2rem;
                             }
+                        }
+                    }
+                    .create-form {
+                        display: block;
+
+                        .input-group {
+                            margin-bottom: 0;
                         }
                     }
                     .data {
@@ -136,6 +171,42 @@
                     .text {
                         height: 6.5rem;
                         margin: 0;
+                    }
+                }
+            }
+
+            &:hover {
+                // border: 3px solid #232323;
+                // border-top: none;
+
+                h2 {
+                    transform: translate(9.4%, 76%);
+                    font-size: 21px;
+                    overflow: hidden;
+                    margin: -30px -33px 0 -33px;
+                    position: absolute;
+                    width: calc( 100% + 6px);
+                    background: transparent;
+                    z-index: 1;
+                    display: block;
+
+                    &:before, 
+                    &:after {
+                        opacity: 1;
+                        content: "";
+                        position: absolute;
+                        width: 100%;
+                        margin-top: -2px;
+                        border-top: 3px solid #232323;
+                        top: 50%;
+                    }
+                    &:before{
+                        -webkit-transform: translate(-100%, 0);
+                        transform: translate(-100%, 0);
+                        margin-left: -30px;
+                    }
+                    &:after {
+                        margin-left: 30px;
                     }
                 }
             }

@@ -1,5 +1,5 @@
 import {axiosInstance} from './axiosConfig';
 
-export function me(params: any) {
+export function me() {
     return axiosInstance.get('users/me');
 }

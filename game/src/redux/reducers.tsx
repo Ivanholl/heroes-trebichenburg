@@ -1,15 +1,15 @@
 import {  combineReducers } from 'redux'
 
-import { InitialState, SET_USER, SET_IS_AUTHENTICATED } from './types';
+import { InitialUserState, InitialHeroState, SET_USER, SET_IS_AUTHENTICATED, SET_HERO } from './types';
 
-const initialState: InitialState = {
+const initialUserState: InitialUserState = {
     user: {
         username: '',
     },
     isAuthenticated: false,
 }
 
-function userReducer(state = initialState, action: any): InitialState {
+function userReducer(state = initialUserState, action: any): InitialUserState {
     switch (action.type) {
         case SET_USER:
             return { ...state,  user: action.user }
@@ -20,8 +20,22 @@ function userReducer(state = initialState, action: any): InitialState {
     }
 }
 
+const initialHeroState: InitialHeroState = {
+    hero: undefined
+}
+
+function heroReducer(state = initialHeroState, action: any): InitialHeroState {
+    switch (action.type) {
+        case SET_HERO:
+            return { ...state,  hero: action.hero }
+        default:
+            return state
+    }
+}
+
 const combinedReducers = combineReducers({
-    userReducer
+    userReducer,
+    heroReducer
 })
 
 export default combinedReducers;

@@ -1,22 +1,23 @@
 import { Dispatch } from 'redux';
 
 import { authenticate, setTokenInterseptor } from '../api/axiosConfig';
-
+import { Hero, User } from '../types'
 import * as userApi from '../api/userApi';
-import { MyThunk, SET_USER, SET_IS_AUTHENTICATED } from './types';
+import * as heroesApi from '../api/heroesApi';
+
+import { MyThunk, SET_USER, SET_IS_AUTHENTICATED, SET_HERO } from './types';
 
 
-export function setUser(user: any) {
+export function setUser(user: User) {
   return { type: SET_USER, user };
 };
-export function setIsAuthenticated(isAuthenticated: any) {
+export function setIsAuthenticated(isAuthenticated: boolean) {
   return { type: SET_IS_AUTHENTICATED, isAuthenticated };
 };
 
 
-
-export const login = (email: String, pass: String): MyThunk | any => async (dispatch: Dispatch) => {
-    let res = await authenticate(email, pass)
+export const login = (email: String, password: String): MyThunk | any => async (dispatch: Dispatch) => {
+    let res = await authenticate({email, password})
 
     if (res.data) {
         var { token } = res.data;
@@ -32,7 +33,7 @@ export const login = (email: String, pass: String): MyThunk | any => async (disp
 }
 
 export const getUserInfo = (): MyThunk | any => async (dispatch: Dispatch) => {
-    let res = await userApi.me({});
+    let res = await userApi.me();
     
     if (res.data) {
         dispatch(setUser(res.data));
@@ -61,10 +62,29 @@ export const checkIfAuth = (): MyThunk | any => async (dispatch: Dispatch) => {
 export const logout = (): MyThunk | any => async (dispatch: Dispatch) => {
     if (localStorage && localStorage.token) {
         setTokenInterseptor('');
-        dispatch(setUser({}));
+        dispatch(setUser({username: ''}));
 
         return true;
     } else {
         return false;
     }
 }
+
+export function setHero(hero: Hero) {
+    return { type: SET_HERO, hero };
+}
+
+export const createHero = (hero: Hero): MyThunk | any => async (dispatch: Dispatch) => {
+
+    let res = await heroesApi.createHero(hero);
+    debugger
+    if (res.data.hero) {
+        dispatch(setHero(res.data));
+        dispatch(setIsAuthenticated(true));
+        return res.data
+    } else if(res.data.error) {
+        return res.data.error
+    } else {
+        return false;
+    }
+};
