@@ -22,7 +22,7 @@ export default function LoginForm() {
     }
     async function checkIfAuth() {
             let isAuth = await dispatch(UserActions.checkIfAuth())
-            if(isAuth == true) {
+            if(isAuth === true) {
                 history.push("/charactercreation")
             }  
     }

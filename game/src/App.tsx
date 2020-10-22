@@ -2,7 +2,7 @@ import React, {Suspense, lazy} from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import './css/index.css';
+import './styles/index.css';
 import AccountWidget from './components/account/AccountWidget';
 import { RootState } from './redux/types';
 

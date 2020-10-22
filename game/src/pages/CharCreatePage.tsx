@@ -4,6 +4,7 @@ import React from 'react';
 // import {useHistory} from 'react-router-dom';
 import CharCard from '../components/character/CharCard';
 // import * as UserActions from '../redux/actions';
+import {Race, RaceName} from '../types'
 
 export default function CharCreationPage() {
 
@@ -12,7 +13,7 @@ export default function CharCreationPage() {
         <h2>Create New Character</h2>
 
         <div className="row">
-            {Allraces.map((race, index) =>
+            {Allraces.map((race: Race, index) =>
                 <CharCard key={index} race={race}/>
             )}
         </div>
@@ -20,8 +21,8 @@ export default function CharCreationPage() {
     );
 };
 
-const Allraces = [{
-    name: 'dwarf',
+const Allraces: Race[] = [{
+    name: RaceName.dwarf,
     hp: 15,
     mp: 3,
     minDm: 2,
@@ -29,7 +30,7 @@ const Allraces = [{
     df: 4,
     info: "One introvert race, they don't have any interest in battle only in gold mines. Their adventurous spirit and human likeness makes them defessive."
 },{
-    name: 'elf',
+    name: RaceName.elf,
     hp: 13,
     mp: 6,
     minDm: 2,
@@ -37,7 +38,7 @@ const Allraces = [{
     df: 2,
     info:  "The oldest of all races, they have no interest in wars if no one bothers their forests. They rely on magic in battle."
 },{
-    name: 'human',
+    name: RaceName.human,
     hp: 15,
     mp:5,
     minDm: 3,
@@ -45,7 +46,7 @@ const Allraces = [{
     df: 2,
     info: "The most adaptive race of all and maybe the youngest of all races makes them best for beginners."
 },{
-    name: 'orc',
+    name: RaceName.orc,
     hp: 10,
     mp: 3,
     minDm: 4,
@@ -53,7 +54,7 @@ const Allraces = [{
     df: 3,
     info: "As young race as the humans, they are forged in battle with one another and other races, relying on their brutal strength in battles."
 },{
-    name: 'undead',
+    name: RaceName.undead,
     hp: 16,
     mp: 4,
     minDm: 2,
