@@ -70,6 +70,18 @@ export const logout = (): MyThunk | any => async (dispatch: Dispatch) => {
     }
 }
 
+
+export const editUser = (user: User): MyThunk | any => async (dispatch: Dispatch) => {
+    let res = await userApi.editUser(user);
+
+    if (res) {
+        
+        return true;
+    } else {
+        return false;
+    }
+}
+
 export function setHero(hero: Hero) {
     return { type: SET_HERO, hero };
 }
@@ -77,10 +89,26 @@ export function setHero(hero: Hero) {
 export const createHero = (hero: Hero): MyThunk | any => async (dispatch: Dispatch) => {
 
     let res = await heroesApi.createHero(hero);
-    debugger
     if (res.data.hero) {
         dispatch(setHero(res.data));
         dispatch(setIsAuthenticated(true));
+        debugger
+        return res.data
+    } else if(res.data.error) {
+        return res.data.error
+    } else {
+        return false;
+    }
+};
+
+
+export const getHero = (_id: String): MyThunk | any => async (dispatch: Dispatch) => {
+
+    let res = await heroesApi.getHero(_id);
+
+    debugger
+    if (res.data) {
+        dispatch(setHero(res.data));
         return res.data
     } else if(res.data.error) {
         return res.data.error

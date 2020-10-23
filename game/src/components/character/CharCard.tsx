@@ -3,9 +3,10 @@ import { InputGroup, FormControl, Button} from 'react-bootstrap';
 // import { useSelector } from 'react-redux';
 import {HP,MP,DMG,DF} from '../icons';
 import { Race } from '../../types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import * as Actions from '../../redux/actions'; 
+import { RootState } from '../../redux/types';
 
 type CharCardProps = {
     race: Race
@@ -14,6 +15,7 @@ type CharCardProps = {
 const CharCard: React.FC<CharCardProps> = ({race}) => {
     const [name, setName] = useState('');
     const [error, setEror] = useState('');
+    const user = useSelector((state: RootState) => state.userReducer.user);
     const dispatch = useDispatch();
 
     async function create() {
@@ -31,6 +33,9 @@ const CharCard: React.FC<CharCardProps> = ({race}) => {
         let res = await dispatch(Actions.createHero(newHero))
         debugger
         if(res.hero) {
+            let sendData = {...user, heroId: res.hero._id}
+            let userRes = await dispatch(Actions.editUser(sendData));
+            debugger
             // history.push("/characterSelection");
         } else {
             setEror(res)

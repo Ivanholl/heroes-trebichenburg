@@ -8,6 +8,29 @@ const router = express.Router();
 var Hero = require('../mongodb/heroSchema');
 const auth = require('../mongodb/auth')
 
+router.post("/getHero", auth, [
+        check("_id", "Hero is not Valid type of Hero").not().isEmpty(),
+    ] , async (req, res) => {
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array()
+            });
+        }   
+
+         try {   
+            let hero = await Hero.findOne({_id: req.body._id});
+            if (hero) {
+                return res.status(200).json(hero);
+            } else {
+                throw new Error("Hero not found")
+            }
+        } catch(e){
+            res.status(400).send("Hero not found");
+        }
+})
+
 router.post("/createHero", auth, [
         check("name", "Hero is not Valid type of Hero").not().isEmpty(),
         check("race", "Hero is not Valid type of Hero").not().isEmpty(),
@@ -46,7 +69,6 @@ router.post("/createHero", auth, [
             });
 
         } catch (err) {
-            console.log(err.message);
             res.status(500).send("Error in Saving");
         }
     }

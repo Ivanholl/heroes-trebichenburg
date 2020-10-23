@@ -128,7 +128,8 @@ router.get("/me", auth, async (req, res) => {
     res.json({
         _id: user._id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        heroId: user.heroId
     });
   } catch (e) {
     res.send({ message: "Error in Fetching user" });

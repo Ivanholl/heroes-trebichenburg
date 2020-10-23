@@ -6,8 +6,10 @@ import './styles/index.css';
 import AccountWidget from './components/account/AccountWidget';
 import { RootState } from './redux/types';
 
+
 const Home = lazy(() => import ('./pages/Home'));
 const CharacterCreation = lazy(() => import ('./pages/CharCreatePage'));
+const HeroSelect = lazy(() => import('./pages/HeroSelect') );
 
 export default function App() {
     return (
@@ -19,6 +21,9 @@ export default function App() {
                     <Route exact={true} path="/" component={Home}/>
                     <PrivateRoute path="/charactercreation">
                         <CharacterCreation />
+                    </PrivateRoute>
+                    <PrivateRoute path="/selectHero">
+                        <HeroSelect />
                     </PrivateRoute>
                     <Redirect from='*' to='/' />
                 </Switch>

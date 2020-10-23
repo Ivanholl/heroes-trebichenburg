@@ -1,9 +1,5 @@
 import React from 'react';
-// import {useDispatch, useSelector} from 'react-redux';
-// import {Button} from 'react-bootstrap';
-// import {useHistory} from 'react-router-dom';
 import CharCard from '../components/character/CharCard';
-// import * as UserActions from '../redux/actions';
 import {Race, RaceName} from '../types'
 
 export default function CharCreationPage() {

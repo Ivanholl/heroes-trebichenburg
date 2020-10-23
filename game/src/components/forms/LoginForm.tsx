@@ -17,13 +17,13 @@ export default function LoginForm() {
     async function login() {
         let res = await dispatch(UserActions.login(email, password))
         if(res) {
-            history.push("/charactercreation");
+            history.push("/selectHero");
         }
     }
     async function checkIfAuth() {
             let isAuth = await dispatch(UserActions.checkIfAuth())
             if(isAuth === true) {
-                history.push("/charactercreation")
+                history.push("/selectHero")
             }  
     }
     useEffect(() => {
